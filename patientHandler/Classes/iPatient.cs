@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace patientHandler.Classes
 {
     public interface iPatient 
-    {
+    {       
+
         string Name { get; set; }
 
         string MothersName { get; set; }

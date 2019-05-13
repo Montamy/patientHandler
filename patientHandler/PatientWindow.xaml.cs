@@ -21,8 +21,7 @@ namespace patientHandler
     /// </summary>
     public partial class PatientWindow : Window
     {
-        
-
+      
         
         public PatientWindow(PatientWindowViewModell pVM)
         {
@@ -30,6 +29,19 @@ namespace patientHandler
             this.DataContext = pVM;
         }
 
+        private void Button_Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
+        private void Button_Reset(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Button_OK(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -7,7 +7,8 @@
         xmlns:ViewModels="clr-namespace:patientHandler.ViewModels" x:Class="patientHandler.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
-    <StackPanel>
+    <Border Padding="10">
+        <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
@@ -23,9 +24,22 @@
                 </ListView.View>
             </ListView>
 
-            <Button Click="Update_Click" Margin="0 0 10 0" Grid.Column="1" Grid.Row="0" Content="Apply" />
+            <Grid Margin="10 10 10 0"  Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Button Name="updateButton"     Click="Update_Click" Margin="0 0 10 20" Grid.Row="0" Content="Update" />
+                <Button Name="newPatientButton" Click="newPatientButton_Click" Margin="0 0 10 20" Grid.Row="1" Content="New Patient" />
+                <Button Name="deleteButton"     Click="deleteButton_Click" Margin="0 0 10 20" Grid.Row="2" Content="Delete Patient" />
+            </Grid>
+            
+            
             
 
         </Grid>
     </StackPanel>
+    </Border>
 </Window>

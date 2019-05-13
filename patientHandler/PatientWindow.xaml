@@ -44,9 +44,9 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Button Margin="0 0 10 0" Grid.Column="0" Content="Ok" />
-                <Button Grid.Column="1" Content="Reset" />
-                <Button Margin="10 0 0 0" Grid.Column="2" Content="Cancel" />
+                <Button Margin="0 0 10 0" Grid.Column="0" Content="Ok" Height="20" VerticalAlignment="Bottom" Click="Button_OK" />
+                <Button Grid.Column="1" Content="Reset" Height="20" VerticalAlignment="Top" Click="Button_Reset" />
+                <Button Margin="10 0 0 0" Grid.Column="2" Content="Cancel" Click="Button_Close" />
 
             </Grid>
 

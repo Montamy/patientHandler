@@ -58,6 +58,8 @@
     <Compile Include="Classes\iPatient.cs" />
     <Compile Include="Classes\isMyPatientRadioButtonConverter.cs" />
     <Compile Include="Classes\Patient.cs" />
+    <Compile Include="Data\database.cs" />
+    <Compile Include="Data\iDatabase.cs" />
     <Compile Include="PatientWindow.xaml.cs">
       <DependentUpon>PatientWindow.xaml</DependentUpon>
     </Compile>

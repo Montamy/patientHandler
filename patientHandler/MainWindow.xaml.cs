@@ -3,6 +3,7 @@ using patientHandler.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,10 +32,43 @@ namespace patientHandler
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-            PatientWindowViewModell pVM = new PatientWindowViewModell(patientList.SelectedItem);
+            if (patientList.SelectedItem == null)
+            {
+                MessageBox.Show("You did not choose a patient.");
+            }
+            else
+            {
+                PatientWindowViewModell pVM = new PatientWindowViewModell(patientList.SelectedItem);
+                PatientWindow pWindow = new PatientWindow(pVM);
+                pWindow.Show();
+            }
+        }
+
+        private void newPatientButton_Click(object sender, RoutedEventArgs e)
+        {
+            PatientWindowViewModell pVM = new PatientWindowViewModell();
             PatientWindow pWindow = new PatientWindow(pVM);
             pWindow.Show();
-           
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (patientList.SelectedItem == null)
+            {
+                MessageBox.Show("You did not choose a patient.");
+            }
+            else
+            {
+                var x = MessageBox.Show("Are you really want to delete this patient?","Delete Patient",
+                         System.Windows.MessageBoxButton.OKCancel,
+                         System.Windows.MessageBoxImage.Question,
+                         System.Windows.MessageBoxResult.Cancel);
+
+                if(x == MessageBoxResult.OK)
+                {
+                    //delete here the choosen patient
+                }
+            }
         }
     }
 }
