@@ -13,7 +13,7 @@ namespace patientHandler.ViewModels
     public class MainWindowViewModell :BaseViewModel
     {
 
-        public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
+        
 
         #region Declaration
         private ObservableCollection<iPatient> mPatientCollection;
@@ -22,10 +22,9 @@ namespace patientHandler.ViewModels
             get { return mPatientCollection;  }
             set
             {
-                if (mPatientCollection == value)
-                    return;
+               
                 mPatientCollection = value;
-                PropertyChanged(this,new PropertyChangedEventArgs(nameof(PatientCollection)));
+                this.OnPropertyChanged();
             }
         }
 
@@ -39,19 +38,18 @@ namespace patientHandler.ViewModels
             :base()
         {
             PatientCollection = new ObservableCollection<iPatient>();
-            data = Database.Get();
-            PatientCollection = data.patientCollection;
+            db = Database.Get();
+            PatientCollection = db.PatientCollection;
             ////AddPatient();           
         }
         #endregion
-        //public void AddPatient()
-        //{
-        //    mPatientCollection.Add(new Patient("Domokos Roland"));
-        //    mPatientCollection.Add(new Patient("Valaki AKinek hosszu a neve"));
-        //    mPatientCollection.Add(new Patient("DFFDSF"));
-        //    mPatientCollection.Add(new Patient("Proba"));
-        //}
-        
+
+        public void RefreshData()
+        {
+            data = null;
+            data = Database.Get();
+            PatientCollection = data.PatientCollection;
+        }
 
 
     }

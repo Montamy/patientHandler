@@ -10,24 +10,32 @@ namespace patientHandler.ViewModels
 {
     public class PatientWindowViewModell : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
+        
 
         #region Declaration
 
+        private iPatient currentipatient;
         private iPatient mnewPatient;
         public iPatient newPatient
         {
             get { return mnewPatient; }
             set
             {
-                if (mnewPatient == value)
-                    return;
+                
                 mnewPatient = value;
-                PropertyChanged(this, new PropertyChangedEventArgs(nameof(newPatient)));
+                this.OnPropertyChanged();
             }
         }
 
-        public iPatient currentIPatient { get; set; }
+        public iPatient currentIPatient
+        {
+            get { return currentipatient; }
+            set
+            {
+                currentipatient = value;
+                this.OnPropertyChanged();
+            }
+        }
 
         public bool isNewPatient { get; set; }
         #endregion
@@ -52,7 +60,10 @@ namespace patientHandler.ViewModels
 
         public void resetToOldpatient()
         {
-            currentIPatient = new Patient();           
+            if(!isNewPatient)
+                currentIPatient = (iPatient) newPatient.Clone();
+            else      
+                currentIPatient = new Patient() {ID = currentIPatient.ID, isMyPatient = false};           
         }
 
         public void saveStatus()

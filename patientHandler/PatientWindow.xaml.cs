@@ -23,10 +23,17 @@ namespace patientHandler
     {
         private PatientWindowViewModell pVM;
         
-        public PatientWindow(PatientWindowViewModell pVM)
+        public PatientWindow()
         {
             InitializeComponent();
-            this.pVM = pVM;
+            pVM = new PatientWindowViewModell();
+            this.DataContext = this.pVM;
+        }
+
+        public PatientWindow(iPatient patient)
+        {
+            InitializeComponent();
+            pVM = new PatientWindowViewModell(patient);
             this.DataContext = this.pVM;
         }
 

@@ -88,7 +88,8 @@ namespace patientHandler.Classes
                 ID = this.ID,
                 Name = this.Name,
                 MothersName = this.MothersName,
-                isMyPatient = this.isMyPatient
+                isMyPatient = this.isMyPatient,
+                Note = this.Note
             };
         }
     }

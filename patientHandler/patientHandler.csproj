@@ -56,7 +56,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\iPatient.cs" />
-    <Compile Include="Classes\isMyPatientRadioButtonConverter.cs" />
     <Compile Include="Classes\Patient.cs" />
     <Compile Include="Data\Database.cs" />
     <Compile Include="Data\iDatabase.cs" />

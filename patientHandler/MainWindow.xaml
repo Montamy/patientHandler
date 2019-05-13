@@ -9,7 +9,8 @@
         Title="MainWindow" Height="600" Width="800">
     <Border Padding="10">
         <StackPanel>
-        <Grid>
+
+            <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>

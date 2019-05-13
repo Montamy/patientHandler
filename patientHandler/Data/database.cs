@@ -2,31 +2,43 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace patientHandler.Data
 {
-    public class Database : iDatabase
+    public class Database :  iDatabase
     {
         private static Database _peldany;
 
-        public ObservableCollection<iPatient> patientCollection;
+        private ObservableCollection<iPatient> patientCollection;
 
         public string path;
 
-        public int lastDataItem; 
+        public int lastDataItem;
+
+        public ObservableCollection<iPatient> PatientCollection
+        {
+            get { return patientCollection; }
+            set { patientCollection = value; }
+        }
+
 
         public static Database Get()
         {
             if(_peldany == null)
                 _peldany = new Database();
+            
             return _peldany;
         }
-           
 
+        #region Manipulate Database
+
+      
         public Database ()
         {
             patientCollection = new ObservableCollection<iPatient>();
@@ -41,10 +53,10 @@ namespace patientHandler.Data
         {
             string stringPatient = "";
             stringPatient += this.lastDataItem++ + ";"+ patient.Name + ";" + patient.MothersName + ";" + patient.Note + ";" +
-                             patient.isMyPatient.ToString() + ";0";
+                             patient.isMyPatient.ToString().ToLower() + ";0";
 
             File.AppendAllText(path, stringPatient + Environment.NewLine);
-
+            getItemList();
 
 
         }
@@ -83,7 +95,8 @@ namespace patientHandler.Data
                 
             }
 
-            
+            getItemList();
+
         }
 
         public void getItem()
@@ -93,6 +106,7 @@ namespace patientHandler.Data
 
         public void getItemList()
         {
+            patientCollection = new ObservableCollection<iPatient>();
             StreamReader tr = new StreamReader(path, Encoding.GetEncoding("iso-8859-1"));
 
             int lineNumber = 0;
@@ -121,6 +135,7 @@ namespace patientHandler.Data
                 line = tr.ReadLine();
             }
 
+            lastDataItem++;
             tr.Close();
         }
 
@@ -151,14 +166,20 @@ namespace patientHandler.Data
             {
                 string stringPatient = "";
                 stringPatient += patient.ID + ";" + patient.Name + ";" + patient.MothersName + ";" + patient.Note + ";" +
-                                 patient.isMyPatient.ToString() + ";0";
+                                 patient.isMyPatient.ToString().ToLower() + ";0";
                 lineChanger(stringPatient, lineNumber);
 
             }
+            getItemList();
 
-            
+
         }
 
+        #endregion
+
+        #region Logic    
+
+        
         private void lineChanger(string newText, int line_to_edit)
         {
             string[] arrLine = File.ReadAllLines(this.path);
@@ -166,5 +187,6 @@ namespace patientHandler.Data
             File.WriteAllLines(this.path, arrLine);
         }
 
+        #endregion
     }
 }

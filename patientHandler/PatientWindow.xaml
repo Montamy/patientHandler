@@ -9,7 +9,7 @@
     
     <Border Padding="20">
         <StackPanel>
-            <TextBlock Text="Patiant information" FontWeight="Bold" Margin="10 10"/>
+            <TextBlock Text="Patient information" FontWeight="Bold" Margin="10 10"/>
             
             <Grid Name="selectedPatient" >
                 <Grid.ColumnDefinitions>

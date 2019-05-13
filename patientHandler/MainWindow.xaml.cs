@@ -53,19 +53,18 @@ namespace patientHandler
             }
             else
             {
-                PatientWindowViewModell pVM = new PatientWindowViewModell(patientList.SelectedItem);
-                PatientWindow pWindow = new PatientWindow(pVM);
-                pWindow.Show();
-                VM = new MainWindowViewModell();
+               
+                PatientWindow pWindow = new PatientWindow((patientList.SelectedItem as iPatient));
+                pWindow.ShowDialog();
+                this.VM.RefreshData();
             }
         }
 
         private void newPatientButton_Click(object sender, RoutedEventArgs e)
         {
-            PatientWindowViewModell pVM = new PatientWindowViewModell();
-            PatientWindow pWindow = new PatientWindow(pVM);
-            pWindow.Show();
-            VM = new MainWindowViewModell();
+            PatientWindow pWindow = new PatientWindow();
+            pWindow.ShowDialog();
+            this.VM.RefreshData();
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
@@ -86,6 +85,7 @@ namespace patientHandler
                     this.vm.db.deleteItem(patientList.SelectedItem);
                 }
             }
+            this.VM.RefreshData();
         }
     }
 }
