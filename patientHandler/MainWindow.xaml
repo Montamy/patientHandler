@@ -1,12 +1,31 @@
-﻿<Window x:Class="patientHandler.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:patientHandler"
+        xmlns:ViewModels="clr-namespace:patientHandler.ViewModels" x:Class="patientHandler.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="600" Width="800">
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ListView Name="patientList" Grid.Column="0" ItemsSource="{Binding PatientCollection}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="150"  Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Width="150" Header="Mothers Name" DisplayMemberBinding="{Binding MothersName}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <Button Click="Update_Click" Margin="0 0 10 0" Grid.Column="1" Grid.Row="0" Content="Apply" />
+            
+
+        </Grid>
+    </StackPanel>
 </Window>

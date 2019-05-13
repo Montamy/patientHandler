@@ -12,29 +12,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace patientHandler
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PatientWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {       
+    public partial class PatientWindow : Window
+    {
+        
 
-        public MainWindow()
+        
+        public PatientWindow(PatientWindowViewModell pVM)
         {
             InitializeComponent();
-            this.DataContext = new ViewModels.MainWindowViewModell();
+            this.DataContext = pVM;
         }
 
-        private void Update_Click(object sender, RoutedEventArgs e)
-        {
-            PatientWindowViewModell pVM = new PatientWindowViewModell(patientList.SelectedItem);
-            PatientWindow pWindow = new PatientWindow(pVM);
-            pWindow.Show();
-           
-        }
+
     }
 }
