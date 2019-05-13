@@ -1,4 +1,5 @@
-﻿using System;
+﻿using patientHandler.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,8 +8,15 @@ using System.Threading.Tasks;
 
 namespace patientHandler.ViewModels
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel //: INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged = (sender,e) => { };
+     //   public event PropertyChangedEventHandler PropertyChanged = (sender,e) => { };
+
+        public iDatabase db;
+
+        public BaseViewModel()
+        {
+            db = Database.Get();
+        }
     }
 }

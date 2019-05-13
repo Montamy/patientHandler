@@ -1,4 +1,5 @@
-﻿using System;
+﻿using patientHandler.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,13 @@ namespace patientHandler.Data
     public interface iDatabase
     {
 
-        void addItem();
+        void addItem(iPatient patient);
 
-        void updateItem();
+        void updateItem(iPatient patient);
 
         void getItem();
 
-        void deleteItem();
+        void deleteItem(object p);
 
         void getItemList();
 

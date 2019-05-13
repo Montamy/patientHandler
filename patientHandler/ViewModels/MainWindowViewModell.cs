@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using patientHandler.Data;
 
 namespace patientHandler.ViewModels
 {
@@ -28,6 +29,8 @@ namespace patientHandler.ViewModels
             }
         }
 
+        public Database data;
+
         public iPatient selectedIPatient;
         #endregion
 
@@ -36,16 +39,18 @@ namespace patientHandler.ViewModels
             :base()
         {
             PatientCollection = new ObservableCollection<iPatient>();
-            AddPatient();           
+            data = Database.Get();
+            PatientCollection = data.patientCollection;
+            ////AddPatient();           
         }
         #endregion
-        public void AddPatient()
-        {
-            mPatientCollection.Add(new Patient("Domokos Roland"));
-            mPatientCollection.Add(new Patient("Valaki AKinek hosszu a neve"));
-            mPatientCollection.Add(new Patient("DFFDSF"));
-            mPatientCollection.Add(new Patient("Proba"));
-        }
+        //public void AddPatient()
+        //{
+        //    mPatientCollection.Add(new Patient("Domokos Roland"));
+        //    mPatientCollection.Add(new Patient("Valaki AKinek hosszu a neve"));
+        //    mPatientCollection.Add(new Patient("DFFDSF"));
+        //    mPatientCollection.Add(new Patient("Proba"));
+        //}
         
 
 

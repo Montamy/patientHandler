@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace patientHandler.Classes
 {
-    public interface iPatient 
+    public interface iPatient : ICloneable
     {       
-
+        int ID { get; set; }
         string Name { get; set; }
 
         string MothersName { get; set; }

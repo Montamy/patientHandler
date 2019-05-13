@@ -20,22 +20,22 @@
                 <!-- Name   -->
                 <StackPanel Grid.Column="0" Margin="0 0 10 0">
                     <TextBlock Text="Name" />
-                    <TextBox Text="{Binding Path=newPatient.Name, Mode=TwoWay}" Padding="2"></TextBox>
+                    <TextBox Text="{Binding Path=currentIPatient.Name, Mode=TwoWay}" Padding="2"></TextBox>
                 </StackPanel>
                 <!-- Mother Name -->
                 <StackPanel Grid.Column="1">
                     <TextBlock Text="Mother Name" />
-                    <TextBox Text="{Binding Path=newPatient.MothersName, Mode=TwoWay}" Padding="2"></TextBox>
+                    <TextBox Text="{Binding Path=currentIPatient.MothersName, Mode=TwoWay}" Padding="2"></TextBox>
                 </StackPanel>
             </Grid>
             <!-- Note   -->
             <StackPanel Grid.Column="0" Margin="0 0 10 0">
                 <TextBlock Text="Note" />
-                <TextBox Text="{Binding Path=newPatient.Note, Mode=TwoWay}" Padding="2"></TextBox>
+                <TextBox Text="{Binding Path=currentIPatient.Note, Mode=TwoWay}" Padding="2"></TextBox>
             </StackPanel>
             <!-- isMyPatient-->           
             <RadioButton GroupName="isMyPatient" Content="Not My Patient" IsChecked="True" />
-            <RadioButton GroupName="isMyPatient" Content="My Patient" IsChecked="{Binding Path=newPatient.isMyPatient, Mode=TwoWay}"/>
+            <RadioButton Margin="0 0 0 40" GroupName="isMyPatient" Content="My Patient" IsChecked="{Binding Path=currentIPatient.isMyPatient, Mode=TwoWay}"/>
 
             <Grid>
                 <Grid.ColumnDefinitions>

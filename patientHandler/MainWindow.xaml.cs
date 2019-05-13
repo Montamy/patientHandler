@@ -2,6 +2,7 @@
 using patientHandler.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -21,13 +22,27 @@ namespace patientHandler
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {       
+    public partial class MainWindow : Window, INotifyPropertyChanged
+    {
+        private MainWindowViewModell vm;
+
+        public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
+
+        public MainWindowViewModell VM
+        {
+            get { return vm; }
+            set
+            {               
+                vm = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(VM)));
+            }
+        }
 
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new ViewModels.MainWindowViewModell();
+            VM= new MainWindowViewModell();
+            this.DataContext = VM;
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
@@ -41,6 +56,7 @@ namespace patientHandler
                 PatientWindowViewModell pVM = new PatientWindowViewModell(patientList.SelectedItem);
                 PatientWindow pWindow = new PatientWindow(pVM);
                 pWindow.Show();
+                VM = new MainWindowViewModell();
             }
         }
 
@@ -49,6 +65,7 @@ namespace patientHandler
             PatientWindowViewModell pVM = new PatientWindowViewModell();
             PatientWindow pWindow = new PatientWindow(pVM);
             pWindow.Show();
+            VM = new MainWindowViewModell();
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
@@ -66,7 +83,7 @@ namespace patientHandler
 
                 if(x == MessageBoxResult.OK)
                 {
-                    //delete here the choosen patient
+                    this.vm.db.deleteItem(patientList.SelectedItem);
                 }
             }
         }

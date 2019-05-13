@@ -13,33 +13,51 @@ namespace patientHandler.ViewModels
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
 
         #region Declaration
-        public iPatient newPatient { get; set; }
+
         private iPatient mnewPatient;
+        public iPatient newPatient
+        {
+            get { return mnewPatient; }
+            set
+            {
+                if (mnewPatient == value)
+                    return;
+                mnewPatient = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(newPatient)));
+            }
+        }
 
-        public iPatient oldPatient { get; set; }
+        public iPatient currentIPatient { get; set; }
 
-        private bool isNewPatientOrMine { get; set; }
+        public bool isNewPatient { get; set; }
         #endregion
 
         #region Constructors
         public PatientWindowViewModell(object o)
-        {            
-            oldPatient = (iPatient)o;           
-            newPatient = oldPatient;
+        {
+            
+            newPatient = (iPatient)o;
+            currentIPatient = (iPatient)newPatient.Clone();
+            isNewPatient = false;
         }
 
         public PatientWindowViewModell()
-        {
-            oldPatient = new Patient("");
-            newPatient = oldPatient;
+        {            
+            newPatient = new Patient("");
+            currentIPatient = (iPatient)newPatient.Clone();
+            isNewPatient = true;
         }
 
         #endregion
 
         public void resetToOldpatient()
         {
-            newPatient = oldPatient;
+            currentIPatient = new Patient();           
         }
 
+        public void saveStatus()
+        {
+            this.newPatient = this.currentIPatient;
+        }
     }
 }
